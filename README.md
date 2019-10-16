@@ -1,3 +1,1 @@
-# Boris Bikes
-
-This is a project to build a program to manage boris bike rental scheme.
+Program that emulates all the docking stations, bikes, and infrastructure (repair, staff, and so on) required to make a new bike system for TFL.
