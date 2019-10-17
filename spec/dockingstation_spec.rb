@@ -38,4 +38,10 @@ describe DockingStation do
       "Docking Station is empty")
   end
 
+  it "fails to dock a bike if capacity is reached" do
+    full_station = DockingStation.new
+    full_station.dock(Bike.new)
+    expect{full_station.dock(Bike.new)}.to raise_exception(RuntimeError, "Capacity reached")
+  end
+
 end
