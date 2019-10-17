@@ -9,11 +9,16 @@ describe DockingStation do
   end
 
   it 'checks docking station returns a bike' do
-    expect(dockingstation.release_bike).to be_instance_of(Bike)
+    full_station_1 = DockingStation.new
+    a_bike = Bike.new
+    full_station_1.dock(a_bike)
+    expect(full_station_1.release_bike).to be_instance_of(Bike)
   end
 
   it 'checks whether bike is working' do
-    test_bike = dockingstation.release_bike
+    full_station_2 = DockingStation.new
+    full_station_2.dock(Bike.new)
+    test_bike = full_station_2.release_bike
     expect(test_bike.working?).to eq true
   end
 
@@ -24,7 +29,13 @@ describe DockingStation do
   it 'check docking station docks bike' do
     test_bike2 = Bike.new
     dockingstation.dock(test_bike2)
-    expect(dockingstation.docked_bikes).to eq test_bike2
+    expect(dockingstation.bike_rack).to eq [test_bike2]
+  end
+
+  it "fails to release bike if docking station is empty" do
+    empty_station = DockingStation.new
+    expect{empty_station.release_bike}.to raise_exception(RuntimeError,
+      "Docking Station is empty")
   end
 
 end
