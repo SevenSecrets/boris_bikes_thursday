@@ -3,7 +3,7 @@ class DockingStation
   attr_reader :bike_rack
   def initialize
     @bike_rack = []
-    @capacity = 1
+    @capacity = 20
  end
 
   def release_bike

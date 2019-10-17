@@ -10,8 +10,7 @@ describe DockingStation do
 
   it 'checks docking station returns a bike' do
     full_station_1 = DockingStation.new
-    a_bike = Bike.new
-    full_station_1.dock(a_bike)
+    full_station_1.dock(Bike.new)
     expect(full_station_1.release_bike).to be_instance_of(Bike)
   end
 
@@ -38,10 +37,12 @@ describe DockingStation do
       "No bikes available")
   end
 
-  it "fails to dock a bike if capacity is reached" do
+  it "fails to dock a bike if capacity of 20 is reached" do
     full_station = DockingStation.new
-    full_station.dock(Bike.new)
+    20.times {full_station.dock(Bike.new)}
     expect{full_station.dock(Bike.new)}.to raise_exception(RuntimeError, "Docking station full")
   end
+
+
 
 end
