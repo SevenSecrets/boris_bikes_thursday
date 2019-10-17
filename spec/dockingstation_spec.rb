@@ -35,13 +35,13 @@ describe DockingStation do
   it "fails to release bike if docking station is empty" do
     empty_station = DockingStation.new
     expect{empty_station.release_bike}.to raise_exception(RuntimeError,
-      "Docking Station is empty")
+      "No bikes available")
   end
 
   it "fails to dock a bike if capacity is reached" do
     full_station = DockingStation.new
     full_station.dock(Bike.new)
-    expect{full_station.dock(Bike.new)}.to raise_exception(RuntimeError, "Capacity reached")
+    expect{full_station.dock(Bike.new)}.to raise_exception(RuntimeError, "Docking station full")
   end
 
 end
