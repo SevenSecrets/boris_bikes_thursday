@@ -44,6 +44,14 @@ describe DockingStation do
     expect{full_station.dock(Bike.new)}.to raise_exception(RuntimeError, "Docking station full")
   end
 
+  it "on initialization create a docking station with non-default capacity" do
+    non_default_station = DockingStation.new(10)
+    expect(non_default_station.capacity).to eq(10)
+  end
 
+  it "on initialization creates a docking station with default capacity" do
+    default_station = DockingStation.new
+    expect(default_station.capacity).to eq(DockingStation::DEFAULT_CAPACITY)
+  end
 
 end
