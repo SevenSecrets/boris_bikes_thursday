@@ -39,7 +39,8 @@ describe DockingStation do
 
   it "fails to dock a bike if capacity of 20 is reached" do
     full_station = DockingStation.new
-    20.times {full_station.dock(Bike.new)}
+    # p full_station::DEFAULT_CAPACITY
+    DockingStation::DEFAULT_CAPACITY.times {full_station.dock(Bike.new)}
     expect{full_station.dock(Bike.new)}.to raise_exception(RuntimeError, "Docking station full")
   end
 
