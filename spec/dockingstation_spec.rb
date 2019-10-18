@@ -29,6 +29,7 @@ describe DockingStation do
     test_bike2 = Bike.new
     dockingstation.dock(test_bike2)
     expect(dockingstation.bike_rack).to eq [test_bike2]
+    dockingstation.release_bike
   end
 
   it "fails to release bike if docking station is empty" do
@@ -52,6 +53,20 @@ describe DockingStation do
   it "on initialization creates a docking station with default capacity" do
     default_station = DockingStation.new
     expect(default_station.capacity).to eq(DockingStation::DEFAULT_CAPACITY)
+  end
+
+  it "doesn't release a bike when it's broken" do
+    broken_bike = Bike.new
+    broken_bike.report_broken
+    dockingstation.dock(broken_bike)
+    expect{ dockingstation.release_bike }.to raise_error("Bike is broken")
+  end
+
+  it "accepts bikes in any condition, even when broken" do
+    broken_bike = Bike.new
+    broken_bike.report_broken
+    dockingstation.dock(broken_bike)
+    expect(dockingstation.bike_rack).to eq [broken_bike]
   end
 
 end
